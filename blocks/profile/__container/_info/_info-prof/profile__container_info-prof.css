@@ -1,0 +1,13 @@
+.profile__container_info-prof {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+  margin-top: 8px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  color: #FFFFFF;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
