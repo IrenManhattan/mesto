@@ -3,7 +3,6 @@
   font-size: 18px;
   line-height: 22px;
   margin: 0;
-  margin-top: 8px;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   color: #FFFFFF;
@@ -11,3 +10,14 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__container_info-prof  {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 14px;
+  }
+}
+
+

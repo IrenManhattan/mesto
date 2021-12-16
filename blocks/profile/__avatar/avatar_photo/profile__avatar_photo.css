@@ -5,3 +5,9 @@
   margin: 3.75px auto;
   object-fit: cover;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__avatar_photo  {
+    margin: 0 29.25px 0 20.5px;
+  }
+}
