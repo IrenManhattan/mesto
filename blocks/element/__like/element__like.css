@@ -1,11 +1,11 @@
-.element__caption_like {
+.element__like {
   height: 19px;
 }
 
-.element__caption_like:hover{
+.element__like:hover{
   opacity: 0.5;
   cursor: pointer;
 }
-.element__caption_like:active{
+.element__like:active{
   background-image: url(../../../../images/active_like.png);
 }
