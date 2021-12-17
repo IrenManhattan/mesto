@@ -1,4 +1,4 @@
-.profile__info-box {
+.profile__box {
   margin-left: 0;
   padding: 0;
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__info-box {
+  .profile__box {
     flex-wrap: wrap;
     justify-content: center;
   }
