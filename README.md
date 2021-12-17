@@ -35,4 +35,4 @@
 
 
 **Ссылка на проект
-https://irenmanhattan.github.io/russian-travel/index.html
+https://irenmanhattan.github.io/mesto/index.html
