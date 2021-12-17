@@ -1,4 +1,4 @@
-.profile__container_info {
+.profile__info {
   height: 39px;
   display: flex;
   align-items: center;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__container_info  {
+  .profile__info  {
     justify-content: center;
     height: 26px;
   }

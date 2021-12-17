@@ -1,9 +1,9 @@
-let editForm= document.querySelector('.profile__container_edit-button');
+let editForm= document.querySelector('.profile__edit-button');
 let container = document.querySelector('.popup');
 let exitButton = container.querySelector('.popup__exit');
 let profile = document.querySelector('.profile');
-let nameProfile = profile.querySelector('.profile__container_info-name');
-let profProfile = profile.querySelector('.profile__container_info-prof');
+let nameProfile = profile.querySelector('.profile__info_name');
+let profProfile = profile.querySelector('.profile__info_prof');
 let nameForm = container.querySelector('#new-name');
 let profForm = container.querySelector('#new-profession');
 let formSave = container.querySelector('.popup__button');
