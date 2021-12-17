@@ -9,6 +9,18 @@
 </head>
 <body>
   <div class="root">
+    <div class="popup">
+      <div class="popup__container">
+          <button type="button" class="popup__exit"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form">
+              <input type="text" id="new-name" placeholder="Имя" class="popup__input">
+              <input type="text" id="new-profession" placeholder="Вид деятельности" class="popup__input">
+              <button type="submit" class="popup__button">Сохранить</button>
+          </form>
+      </div>
+  </div>
+
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип Mesto">
     </header>
@@ -83,5 +95,6 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
   </div>
+  <script src="./pages/script.js"></script>
 </body>
 </html>
