@@ -1,5 +1,5 @@
 .profile__container_info-prof {
-  height: 24px;
+  height: 22px;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
@@ -10,6 +10,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  align-self: flex-start;
 }
 
 @media screen and (max-width: 767px) {
