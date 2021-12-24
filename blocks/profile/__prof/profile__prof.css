@@ -1,8 +1,6 @@
 .profile__prof {
-  height: 22px;
   font-weight: normal;
   font-size: 18px;
-  line-height: 22px;
   margin: 0;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
@@ -15,7 +13,6 @@
 @media screen and (max-width: 767px) {
   .profile__prof  {
     font-size: 14px;
-    line-height: 17px;
     text-align: center;
     margin-top: 14px;
   }

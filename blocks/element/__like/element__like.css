@@ -7,5 +7,6 @@
   cursor: pointer;
 }
 .element__like:active{
-  background-image: url(../../../../images/active_like.png);
+  background-image: url(../../../images/active_like.svg);
+  opacity: 1;
 }

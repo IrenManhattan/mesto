@@ -1,6 +1,5 @@
 .profile__container {
   width: 336px;
-  height: 73px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
