@@ -20,6 +20,9 @@
       width: 36.76px;
       height: 36.76px;
       right: 0;
-      top: -50.38px;
+      top: -39px;
+      background-image: url(../../../images/Close_Icon_mob.svg);
+      width: 20px;
+      height: 20px;
   }
 }
