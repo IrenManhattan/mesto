@@ -8,13 +8,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  line-height: 22px;
 }
 
 @media screen and (max-width: 767px) {
   .profile__prof  {
     font-size: 14px;
     text-align: center;
-    margin-top: 14px;
+    line-height: 17px;
   }
 }
 

@@ -8,12 +8,15 @@
   white-space: nowrap;
   overflow: hidden;
   margin: 0;
+  line-height: 48px;
 }
 
 @media screen and (max-width: 767px) {
   .profile__name  {
     font-size: 27px;
     text-align: center;
+    padding-left: 33.25px;
+    line-height: 33px;
   }
 }
 

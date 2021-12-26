@@ -6,17 +6,21 @@ let nameProfile = profile.querySelector('.profile__name');
 let profProfile = profile.querySelector('.profile__prof');
 let nameForm = container.querySelector('#new-name');
 let profForm = container.querySelector('#new-profession');
-let formSave = container.querySelector('.popup__button');
+let popupForm = container.querySelector('#profile_form');
 
-editForm.addEventListener('click', function openPopup() {
+function openPopup() {
   container.classList.add('popup_opened');
-  nameForm.placeholder=nameProfile.textContent;
-  profForm.placeholder=profProfile.textContent;
-});
+  nameForm.value=nameProfile.textContent;
+  profForm.value=profProfile.textContent;
+}
 
-exitButton.addEventListener('click', function closePopup() {
+editForm.addEventListener('click', openPopup);
+
+function closePopup() {
   container.classList.remove('popup_opened');
-});
+}
+
+exitButton.addEventListener('click', closePopup);
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
@@ -24,10 +28,10 @@ function formSubmitHandler (evt) {
   nameProfile.textContent = nameForm.value;
   profProfile.textContent = profForm.value;
 
-  container.classList.remove('popup_opened');
+  closePopup();
 }
 
-formSave.addEventListener('click', formSubmitHandler);
+popupForm.addEventListener('submit', formSubmitHandler);
 
 
 
