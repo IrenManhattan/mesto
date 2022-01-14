@@ -78,11 +78,12 @@ function formSubmitHandler (evt) {
   nameProfile.textContent = nameForm.value;
   profProfile.textContent = profForm.value;
 
-  closePopup();
+  closePopup(profilePopup);
 }
 
 //Меняем имя и профессию в профиле
 popupForm.addEventListener('submit', formSubmitHandler);
+
 
 
 //Функция удаления карточки
