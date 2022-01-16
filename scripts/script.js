@@ -3,12 +3,12 @@ const profilePopup = document.querySelector('#popup__profile');
 const profileExitButton = document.querySelector('#popup__exit_profile');
 const imageExitButton = document.querySelector('#popup__exit_image');
 const profile = document.querySelector('.profile');
-const editCardButton = document.querySelector('.profile__add-button');
+const addCardButton = document.querySelector('.profile__add-button');
 const nameProfile = profile.querySelector('.profile__name');
 const profProfile = profile.querySelector('.profile__prof');
-const nameForm = document.querySelector('#new-name');
-const profForm = document.querySelector('#new-profession');
-const popupForm = document.querySelector('#profile_form');
+const nameInput = document.querySelector('#new-name');
+const profInput = document.querySelector('#new-profession');
+const prifilePopupForm = document.querySelector('#profile_form');
 const cardsList = document.querySelector('.elements');
 const cardsExitButton = document.querySelector('#popup__exit_card');
 const cardEditForm = document.querySelector('#card_form');
@@ -16,10 +16,10 @@ const inputCardTitle = document.querySelector('#new-title');
 const inputCardLink = document.querySelector('#new-link');
 const popupImageType = document.querySelector('#popup__image');
 const popupImage = document.querySelector('.popup__image');
-const popupEditCard = document.querySelector('#popup__edit_card');
+const addPopupCard = document.querySelector('#popup__edit_card');
 const imageTitle = document.querySelector('.popup__image-title');
 const imageCloseButton = popupImageType.querySelector('.popup__exit');
-const cardsTemplate = document.querySelector('.card-template').content;
+const cardTemplate = document.querySelector('.card-template').content;
 const cardImage = document.querySelectorAll('.element__photo');
 const initialCards = [
   {
@@ -56,8 +56,8 @@ function openPopup(popup) {
 //Открываем форму редактирования профиля
 editForm.addEventListener('click', () => {
   openPopup(profilePopup)
-  nameForm.value=nameProfile.textContent;
-  profForm.value=profProfile.textContent;
+  nameInput.value=nameProfile.textContent;
+  profInput.value=profProfile.textContent;
 })
 
 
@@ -72,17 +72,17 @@ profileExitButton.addEventListener('click', () => {
 })
 
 //Функция изменения имени и профессии в профиле
-function formSubmitHandler (evt) {
+function profileFormSubmitHandler (evt) {
   evt.preventDefault();
 
-  nameProfile.textContent = nameForm.value;
-  profProfile.textContent = profForm.value;
+  nameProfile.textContent = nameInput.value;
+  profProfile.textContent = profInput.value;
 
   closePopup(profilePopup);
 }
 
 //Меняем имя и профессию в профиле
-popupForm.addEventListener('submit', formSubmitHandler);
+prifilePopupForm.addEventListener('submit', profileFormSubmitHandler);
 
 
 
@@ -93,7 +93,7 @@ function deleteHandler (evt) {
 
 //Функция создания карточек и управления их элементами
 function createCard (item) {
-  const cardElement = cardsTemplate.cloneNode(true);
+  const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.element__photo');
   const cardTitle = cardElement.querySelector('.element__text');
   const deleteButton = cardElement.querySelector('.element__delete');
@@ -103,26 +103,26 @@ function createCard (item) {
   cardTitle.textContent = item.name
   cardImage.alt = cardTitle.textContent
 
-  //Открываем попап с картинкой
-  cardImage.addEventListener('click', () => {
-    openPopup(popupImageType)
-    popupImage.src = item.link
-    imageTitle.textContent = item.name
-    popupImage.alt = cardTitle.textContent
-  });
+//Открываем попап с картинкой
+cardImage.addEventListener('click', () => {
+  openPopup(popupImageType)
+  popupImage.src = item.link
+  imageTitle.textContent = item.name
+  popupImage.alt = cardTitle.textContent
+});
 
-  //Удаляем карточку кликом по корзине
-  deleteButton.addEventListener('click', deleteHandler);
+//Удаляем карточку кликом по корзине
+deleteButton.addEventListener('click', deleteHandler);
 
-  //Окрашиваем кнопку like в черный цвет при нажатии
-  likeButton.addEventListener('click', () => {
-    likeButton.classList.toggle('element__like_active')
+//Окрашиваем кнопку like в черный цвет при нажатии
+likeButton.addEventListener('click', () => {
+  likeButton.classList.toggle('element__like_active')
   });
-    return cardElement;
+return cardElement;
 }
 
-function createNewCard (cardArray) {
-  const cardElement = createCard(cardArray)
+function createNewCard (cardData) {
+  const cardElement = createCard(cardData)
   cardsList.prepend(cardElement);
 }
 
@@ -139,15 +139,14 @@ cardEditForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const nameValue = inputCardTitle.value;
   const linkValue = inputCardLink.value;
-  const arrayElement = {name: nameValue, link: linkValue
-  };
-    createNewCard (arrayElement);
-    cardEditForm.reset();
-    closePopup (popupEditCard);
-  })
+  const newElement = {name: nameValue, link: linkValue};
+  createNewCard(newElement);
+  cardEditForm.reset();
+  closePopup(addPopupCard);
+})
 
-  //Открываем форму добавления новой карточки
-  editCardButton.addEventListener('click', () => openPopup (popupEditCard));
+//Открываем форму добавления новой карточки
+addCardButton.addEventListener('click', () => openPopup(addPopupCard));
 
-  //Закрываем форму добавления новой карточки
-  cardsExitButton.addEventListener('click', () => closePopup (popupEditCard));
+//Закрываем форму добавления новой карточки
+cardsExitButton.addEventListener('click', () => closePopup(addPopupCard));
