@@ -1,4 +1,4 @@
-.error__message {
+.popup__error_message {
   opacity: 1;
   padding: 5px;
   color: #ff0000;
@@ -9,10 +9,10 @@
   text-align: left;
 }
 
-.error__message:last-of-type {
+.opup__error_message:last-of-type {
   margin-bottom: 0;
 }
 
-.popup__input .error__message {
+.popup__input .opup__error_message {
   margin-bottom: 5px;
 }

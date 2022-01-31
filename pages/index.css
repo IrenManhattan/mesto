@@ -43,6 +43,5 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-title/popup__image-title.css);
 @import url(../blocks/popup/__image-container/popup__image-container.css);
-
-@import url(../blocks/error/__message/error__message.css);
-@import url(../blocks/error/__message/_visible/error__message_visible.css);
+@import url(../blocks/popup/__error/_message/popup__error_message.css);
+@import url(../blocks/popup/__error/_message/popup__error_message-visible.css);

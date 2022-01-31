@@ -21,7 +21,6 @@ const imageTitle = document.querySelector('.popup__image-title');
 const imageCloseButton = popupImageType.querySelector('.popup__exit');
 const cardTemplate = document.querySelector('.card-template').content;
 const cardImage = document.querySelectorAll('.element__photo');
-const openedPopup = document.querySelector('.popup_opened');
 const initialCards = [
   {
     name: 'Архыз',

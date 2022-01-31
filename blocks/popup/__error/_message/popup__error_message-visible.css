@@ -1,4 +1,4 @@
-.error__message_visible {
+.popup__error_message-visible {
   visibility: visible;
   opacity: 1;
 }
