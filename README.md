@@ -32,7 +32,6 @@
 * Возможность добавления и удаления фотографий на странице
 
 
-
 **Figma**
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=1140%3A291)
