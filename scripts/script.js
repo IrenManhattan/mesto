@@ -21,6 +21,7 @@ const imageTitle = document.querySelector('.popup__image-title');
 const imageCloseButton = popupImageType.querySelector('.popup__exit');
 const cardTemplate = document.querySelector('.card-template').content;
 const cardImage = document.querySelectorAll('.element__photo');
+const openedPopup = document.querySelector('.popup_opened');
 const initialCards = [
   {
     name: 'Архыз',
@@ -51,6 +52,7 @@ const initialCards = [
 //Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 //Открываем форму редактирования профиля
@@ -60,10 +62,10 @@ editForm.addEventListener('click', () => {
   profInput.value=profProfile.textContent;
 })
 
-
 //Функция закрытия popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 //Закрываем форму редактирования профиля
@@ -150,3 +152,36 @@ addCardButton.addEventListener('click', () => openPopup(addPopupCard));
 
 //Закрываем форму добавления новой карточки
 cardsExitButton.addEventListener('click', () => closePopup(addPopupCard));
+
+//Закрываем попап редактирования профиля кликом на оверлей
+profilePopup.addEventListener('click', (evt) => {
+  if(!evt.target.closest('.popup__container')) {
+    closePopup(profilePopup)
+  };
+})
+
+//Закрываем попап редактирования карточки кликом на оверлей
+addPopupCard.addEventListener('click', (evt) => {
+  if(!evt.target.closest('.popup__container')) {
+    closePopup(addPopupCard)
+  };
+})
+
+//Закрываем попап редактирования карточки кликом на оверлей
+popupImageType.addEventListener('click', (evt) => {
+  if(!evt.target.closest('.popup__container')) {
+    closePopup(popupImageType)
+  };
+})
+
+
+function closePopupEsc (evt) {
+  if (evt.key === 'Escape') {
+    closePopup (document.querySelector('.popup_opened'));
+  };
+}
+
+
+
+
+
