@@ -35,8 +35,8 @@ function toggleButton(form, { submitButtonSelector, inactiveButtonClass }) {
 function validateInput(form, input, classes) {
   const errorContainer = form.querySelector(`#error-${input.id}`);
 
-  let isValid = input.validity.valid;
-  let errorText = input.validationMessage;
+  const isValid = input.validity.valid;
+  const errorText = input.validationMessage;
 
   if (isValid) {
       hideError(input, errorContainer, classes);

@@ -48,29 +48,24 @@ const initialCards = [
   }
 ];
 
+//Функция закрытия popup нажатием на кнопку Escape
+function closePopupEsc (evt) {
+  if (evt.key === 'Escape') {
+    closePopup (document.querySelector('.popup_opened'));
+  };
+}
+
 //Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
 
-//Открываем форму редактирования профиля
-editForm.addEventListener('click', () => {
-  openPopup(profilePopup)
-  nameInput.value=nameProfile.textContent;
-  profInput.value=profProfile.textContent;
-})
-
 //Функция закрытия popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
 }
-
-//Закрываем форму редактирования профиля
-profileExitButton.addEventListener('click', () => {
-  closePopup(profilePopup)
-})
 
 //Функция изменения имени и профессии в профиле
 function profileFormSubmitHandler (evt) {
@@ -81,11 +76,6 @@ function profileFormSubmitHandler (evt) {
 
   closePopup(profilePopup);
 }
-
-//Меняем имя и профессию в профиле
-prifilePopupForm.addEventListener('submit', profileFormSubmitHandler);
-
-
 
 //Функция удаления карточки
 function deleteHandler (evt) {
@@ -112,6 +102,36 @@ cardImage.addEventListener('click', () => {
   popupImage.alt = cardTitle.textContent
 });
 
+//Функция добавления новой карточки
+cardEditForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const saveImageButton = cardEditForm.querySelector('.popup__button');
+  const nameValue = inputCardTitle.value;
+  const linkValue = inputCardLink.value;
+  const newElement = {name: nameValue, link: linkValue};
+  if (nameValue.length > 0 && linkValue.length > 0) {
+  createNewCard(newElement);
+  saveImageButton.classList.add('popup__button_disabled');
+  };
+  cardEditForm.reset();
+  closePopup(addPopupCard);
+})
+
+//Открываем форму редактирования профиля
+editForm.addEventListener('click', () => {
+  openPopup(profilePopup)
+  nameInput.value = nameProfile.textContent;
+  profInput.value = profProfile.textContent;
+})
+
+//Закрываем форму редактирования профиля
+profileExitButton.addEventListener('click', () => {
+  closePopup(profilePopup);
+})
+
+//Меняем имя и профессию в профиле
+prifilePopupForm.addEventListener('submit', profileFormSubmitHandler);
+
 //Удаляем карточку кликом по корзине
 deleteButton.addEventListener('click', deleteHandler);
 
@@ -122,29 +142,10 @@ likeButton.addEventListener('click', () => {
 return cardElement;
 }
 
-function createNewCard (cardData) {
-  const cardElement = createCard(cardData)
-  cardsList.prepend(cardElement);
-}
-
-//Добавляем новые карточки из массива
-initialCards.forEach(createNewCard);
-
 //Закрываем попап с картинкой
 imageExitButton.addEventListener('click', () => {
   closePopup(popupImageType)
 });
-
-//Функция добавления новой карточки
-cardEditForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const nameValue = inputCardTitle.value;
-  const linkValue = inputCardLink.value;
-  const newElement = {name: nameValue, link: linkValue};
-  createNewCard(newElement);
-  cardEditForm.reset();
-  closePopup(addPopupCard);
-})
 
 //Открываем форму добавления новой карточки
 addCardButton.addEventListener('click', () => openPopup(addPopupCard));
@@ -173,12 +174,14 @@ popupImageType.addEventListener('click', (evt) => {
   };
 })
 
-
-function closePopupEsc (evt) {
-  if (evt.key === 'Escape') {
-    closePopup (document.querySelector('.popup_opened'));
-  };
+function createNewCard (cardData) {
+  const cardElement = createCard(cardData)
+  cardsList.prepend(cardElement);
 }
+
+//Добавляем новые карточки из массива
+initialCards.forEach(createNewCard);
+
 
 
 
