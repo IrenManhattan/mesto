@@ -52,7 +52,14 @@ export class FormValidator {
       this._buttonElement.disabled = false;
   }
 
-  _toggletButton = () => {
+  resetValidation() {
+    this._toggleButton();
+    this._inputList.forEach((input) => {
+      this._hideError(input)
+    });
+  }
+
+  _toggleButton = () => {
       if (this._isFormValid()) {
           this._disableSubmitButton();
       } else {
@@ -64,30 +71,18 @@ export class FormValidator {
     this._inputList.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._toggletButton();
+        this._toggleButton();
       });
     });
 };
 
 
-  enableValidation() {
-    this._form.addEventListener('submit', (evt) => {
-      evt.preventDeafault();
-  });
-
-    this._setEventListeners();
+enableValidation () {
+  this._form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      });
+       this._setEventListeners();
   }
-}
-
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'error-message_visible',
-  errorSelector: '.error-message'
 }
 
 

@@ -16,7 +16,7 @@ export class Card {
   };
 
   //Метод удаления карточки
-  _deleteHandler = () => {
+  _handleDeleteCard = () => {
     this._cardElement.closest('.element').remove();
   };
 
@@ -30,7 +30,7 @@ export class Card {
 
   _setEventListeners = () => {
     //Удаляем карточку кликом по корзине
-    this._deleteButton.addEventListener('click', this._deleteHandler);
+    this._deleteButton.addEventListener('click', this._handleDeleteCard);
 
     //Окрашиваем кнопку like в черный цвет при нажатии
     this._likeButton.addEventListener('click', this._handleLikeIcon);

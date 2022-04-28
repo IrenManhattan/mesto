@@ -5,9 +5,6 @@ import { enableValidation, popupImageType, initialCards } from './constants.js';
 
 export const cardTemplateSelector = '.card-template';
 
-const profilePopupForm = document.querySelector('#profile_form');
-
-
 const editForm = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('#popup__profile');
 const profileExitButton = document.querySelector('#popup__exit_profile');
@@ -18,7 +15,7 @@ const nameProfile = profile.querySelector('.profile__name');
 const profProfile = profile.querySelector('.profile__prof');
 const nameInput = document.querySelector('#new-name');
 const profInput = document.querySelector('#new-profession');
-const prifilePopupForm = document.querySelector('#profile_form');
+const profilePopupForm = document.querySelector('#profile_form');
 const cardsExitButton = document.querySelector('#popup__exit_card');
 const cardEditForm = document.querySelector('#card_form');
 const inputCardTitle = document.querySelector('#new-title');
@@ -35,7 +32,7 @@ cardEditFormValidator.enableValidation();
 
 
 //Функция изменения имени и профессии в профиле
-function profileFormSubmitHandler (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value;
@@ -62,7 +59,8 @@ cardEditForm.addEventListener('submit', (evt) => {
 
 //Открываем форму редактирования профиля
 editForm.addEventListener('click', () => {
-  openPopup(profilePopup)
+  new FormValidator(enableValidation, profilePopupForm ).resetValidation();
+  openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   profInput.value = profProfile.textContent;
 })
@@ -73,7 +71,7 @@ profileExitButton.addEventListener('click', () => {
 })
 
 //Меняем имя и профессию в профиле
-prifilePopupForm.addEventListener('submit', profileFormSubmitHandler);
+profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 //Закрываем попап с картинкой
 imageExitButton.addEventListener('click', () => {
@@ -81,7 +79,10 @@ imageExitButton.addEventListener('click', () => {
 });
 
 //Открываем форму добавления новой карточки
-addCardButton.addEventListener('click', () => openPopup(addPopupCard));
+addCardButton.addEventListener('click', () => {
+  new FormValidator(enableValidation, cardEditForm).resetValidation();
+  openPopup(addPopupCard)
+});
 
 //Закрываем форму добавления новой карточки
 cardsExitButton.addEventListener('click', () => closePopup(addPopupCard));
