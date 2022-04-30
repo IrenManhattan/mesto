@@ -59,7 +59,7 @@ cardEditForm.addEventListener('submit', (evt) => {
 
 //Открываем форму редактирования профиля
 editForm.addEventListener('click', () => {
-  new FormValidator(enableValidation, profilePopupForm ).resetValidation();
+  profilePopupFormValidator.resetValidation();
   openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   profInput.value = profProfile.textContent;
@@ -80,7 +80,7 @@ imageExitButton.addEventListener('click', () => {
 
 //Открываем форму добавления новой карточки
 addCardButton.addEventListener('click', () => {
-  new FormValidator(enableValidation, cardEditForm).resetValidation();
+  cardEditFormValidator.resetValidation();
   openPopup(addPopupCard)
 });
 
@@ -101,9 +101,9 @@ addPopupCard.addEventListener('click', (evt) => {
   };
 })
 
-//Закрываем попап редактирования карточки кликом на оверлей
+//Закрываем попап картинки кликом на оверлей
 popupImageType.addEventListener('click', (evt) => {
-  if(!evt.target.closest('.popup__container')) {
+  if(!evt.target.closest('.popup__image-container')) {
     closePopup(popupImageType)
   };
 })
