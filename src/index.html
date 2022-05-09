@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="Description" content="Автор: Ирина Галыгина, Проектная работа: Mesto. Курс: Веб-разработка">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body>
   <div class="root">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип Mesto">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Mesto">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__box">
-          <img class="profile__photo" src="./images/profile_avatar.jpg" alt="Аватар">
+          <img class="profile__photo" src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар">
           <div class="profile__container">
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -33,7 +32,7 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <div class="popup" id="popup__edit_card">
-      <div class="popup__container">
+      <div class="popup__container" id="popup__container">
         <button type="button" class="popup__exit" id="popup__exit_card"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form" name="new-card" id="card_form" novalidate>
@@ -46,14 +45,14 @@
       </div>
     </div>
     <div class="popup" id="popup__image">
-      <div class="popup__image-container">
+      <div class="popup__image-container" id="popup__container">
         <button type="button" class="popup__exit" id="popup__exit_image"></button>
         <img class="popup__image" src="#" alt="Развернутое фото">
         <h2 class="popup__image-title"></h2>
       </div>
     </div>
     <div class="popup" id="popup__profile">
-      <div class="popup__container">
+      <div class="popup__container" id="popup__container">
         <button type="button" class="popup__exit" id="popup__exit_profile"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="new-user" id="profile_form" novalidate>
@@ -76,7 +75,6 @@
       </article>
     </template>
   </div>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
 

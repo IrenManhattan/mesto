@@ -40,3 +40,6 @@ export const enableValidation = {
 export const popupImageType = document.querySelector('#popup__image');
 export const popupImage = document.querySelector('.popup__image');
 export const imageTitle = document.querySelector('.popup__image-title');
+
+export const addPopupCard = document.querySelector('#popup__edit_card');
+export const profilePopup = document.querySelector('#popup__profile');
