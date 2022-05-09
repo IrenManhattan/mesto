@@ -43,3 +43,14 @@ export const imageTitle = document.querySelector('.popup__image-title');
 
 export const addPopupCard = document.querySelector('#popup__edit_card');
 export const profilePopup = document.querySelector('#popup__profile');
+
+export const editForm = document.querySelector('.profile__edit-button');
+export const addCardButton = document.querySelector('.profile__add-button');
+export const profilePopupForm = document.querySelector('#profile_form');
+export const cardEditForm = document.querySelector('#card_form');
+
+
+export const nameElementSelector = '.profile__name';
+export const infoElementSelector = '.profile__prof';
+export const nameInput = document.querySelector('#new-name');
+export const profInput = document.querySelector('#new-profession');

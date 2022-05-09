@@ -9,7 +9,22 @@ const images = [
 
 import './index.css';
 import { FormValidator } from '../components/FormValidator.js'
-import { enableValidation, popupImageType, initialCards, addPopupCard, profilePopup, imageTitle, popupImage } from '../components/utils/constants.js'
+import {
+  enableValidation,
+  popupImageType,
+  initialCards,
+  addPopupCard,
+  profilePopup,
+  editForm,
+  addCardButton,
+  profilePopupForm,
+  cardEditForm,
+  nameElementSelector ,
+  infoElementSelector,
+  nameInput,
+  profInput
+} from '../utils/constants.js'
+
 import { Card } from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -17,11 +32,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
 export const cardTemplateSelector = '.card-template';
-
-const editForm = document.querySelector('.profile__edit-button');
-const addCardButton = document.querySelector('.profile__add-button');
-const profilePopupForm = document.querySelector('#profile_form');
-const cardEditForm = document.querySelector('#card_form');
 
 const profilePopupFormValidator = new FormValidator(enableValidation, profilePopupForm);
 const cardEditFormValidator = new FormValidator(enableValidation, cardEditForm);
@@ -70,11 +80,6 @@ addCardButton.addEventListener('click', () => {
   addCard.open();
   cardEditFormValidator.resetValidation();
 });
-
-const nameElementSelector = '.profile__name';
-const infoElementSelector = '.profile__prof';
-const nameInput = document.querySelector('#new-name');
-const profInput = document.querySelector('#new-profession');
 
 const userInfo = new UserInfo({ nameElementSelector, infoElementSelector });
 
