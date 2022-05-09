@@ -30,7 +30,7 @@ const cardEditFormValidator = new FormValidator(enableValidation, cardEditForm);
 profilePopupFormValidator.enableValidation();
 cardEditFormValidator.enableValidation();
 
-const openImagePopup = new PopupWithImage(popupImageType, popupImage, imageTitle);
+const openImagePopup = new PopupWithImage(popupImageType);
 
 //Функция открытия попапа с картинкой при клике на карточку
 function handleCardClick(name, link) {
