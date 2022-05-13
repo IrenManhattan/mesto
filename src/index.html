@@ -4,26 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="Description" content="Автор: Ирина Галыгина, Проектная работа: Mesto. Курс: Веб-разработка">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto</title>
 </head>
 <body>
   <div class="root">
     <header class="header">
+      <!-- <img class="header__logo" src="./images/logo.svg" alt="Логотип Mesto"> -->
       <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Mesto">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__box">
-          <div class="profile__img-change">
-            <img src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар" class="profile__photo">
-            <button class="profile__avatar-button"></button>
-          </div>
+          <div class="profile__avatar-button" type="button" aria-label="Сменить_аватар">
+          <!-- <img class="profile__photo" src="./images/profile_avatar.jpg" alt="Аватар"> -->
+          <img class="profile__photo" src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар">
+         </div>
           <div class="profile__container">
             <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name"></h1>
               <button type="button" class="profile__edit-button"></button>
             </div>
-            <p class="profile__prof">Исследователь океана</p>
+            <p class="profile__prof"></p>
           </div>
         </div>
         <button type="button" class="profile__add-button"></button>
@@ -67,17 +69,41 @@
         </form>
       </div>
     </div>
+    <div class="popup" id="popup__edit_avatar">
+      <div class="popup__container" id="popup__container-avatar">
+        <button type="button" class="popup__exit" id="popup__exit_avatar"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="new-avatar" id="avatar_form" novalidate>
+          <input type="url" id="new-link-avatar" name="link" placeholder="Ссылка на аватар" class="popup__input" autocomplete="off" required>
+          <span id="error-new-link-avatar" class="error-message error-message_visible"></span>
+          <button type="submit" class="popup__button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="popup__edit_confirm">
+      <div class="popup__container" id="popup_confirm-container">
+        <button type="button" class="popup__exit" id="popup__exit_confirm"></button>
+        <form class="popup__form" id="delete-confirm-form" novalidate>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button class="popup__button" type="submit">Да</button>
+          </form>
+      </div>
+   </div>
     <template class="card-template" id="element">
       <article class="element">
         <button class="element__delete" type="button"></button>
         <img class="element__photo" src="#" alt="">
         <div class="element__caption">
           <h2 class="element__text"></h2>
+          <div class="element__like-container">
           <button class="element__like" type="button"></button>
+          <span class="element__like-count"></span>
+        </div>
         </div>
       </article>
     </template>
   </div>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 </html>
 

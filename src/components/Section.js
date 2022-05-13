@@ -14,4 +14,8 @@ export default class Section {
         this._renderer(item);
      });
   }
+
+  addInitialCards(element) {
+    this._container.append(element);
+ }
 }
