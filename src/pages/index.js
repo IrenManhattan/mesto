@@ -122,7 +122,6 @@ const createCard = (data) => {
   )
   return card
 }
-console.log(userId)
 
 const popupAvatarEdit = new PopupWithForm(avatarPopup, newValues => {
   popupAvatarEdit.renderLoading(true)

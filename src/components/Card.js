@@ -34,7 +34,6 @@ export class Card {
     if (this._ownerId !== this._userId) {
       this._cardElement.querySelector(".element__delete").style.display =
         "none";
-        console.log(this._userId)
     }
 
     if (this._likes.find((obj) => this._userId === obj._id)) {
