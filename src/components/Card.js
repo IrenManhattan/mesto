@@ -1,89 +1,97 @@
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteCardClick, likeClickCard) {
+  constructor({ data, handleCardClick, likeClickCard, handleDeleteCardClick }, cardTemplateSelector, api, userId) {
+
       this._name = data.name;
       this._link = data.link;
       this._likes = data.likes;
+      this._api = api;
       this._id = data._id;
-      this._userId = data.userId;
-      this._ownerId = data.ownerId;
+      this._ownerId = data.owner._id;
+      this._userId = userId;
       this._cardSelector = cardTemplateSelector;
-      this._template = document.querySelector(this._cardSelector).content.querySelector('.element');
       this._likeClickCard = likeClickCard;
       this._handleDeleteCardClick = handleDeleteCardClick;
       this._handleCardClick = handleCardClick;
+      this._template = document.querySelector(this._cardSelector).content.querySelector('.element');
   }
 
-  //Метод удаления лайка на карточке
-  _removeLike = () => {
-    this._likeButton.classList.remove('element__like_active');
-  };
+  _getCardTemplate() {
+    this._cardElement = this._template.cloneNode(true);
 
-  //Метод добавления лайка на карточке
-  _addLike() {
-    this._likeButton.classList.add('element__like_active');
-}
+    this._likeButton = this._cardElement.querySelector('.element__like');
+    this._likeCount = this._cardElement.querySelector(".element__like-count");
+  }
 
-  //Метод удаления карточки
-  _handleDeleteCard = () => {
-    this._cardElement.remove();
-    this._cardElement = null;
-  };
-
-  _setEventListeners = () => {
-    //Удаляем карточку кликом по корзине
-    this._deleteButton.addEventListener('click', this._handleDeleteCardClick(this._id));
-
-    //Окрашиваем кнопку like в черный цвет при нажатии
-    this._likeButton.addEventListener('click', this._handleLikeClick(this._id));
-
-    //Открываем попап с картинкой
-    this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
-    });
-}
-
-  _fillCard = () => {
+  renderCard() {
+    this._getCardTemplate();
+    this._cardImage = this._cardElement.querySelector('.element__photo');
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardElement.querySelector('.element__text').textContent = this._name;
+
+    this._likeCount.textContent = this._likes.length;
+
+    if (this._ownerId !== this._userId) {
+      this._cardElement.querySelector(".element__delete").style.display =
+        "none";
+        console.log(this._userId)
+    }
+
+    if (this._likes.find((obj) => this._userId === obj._id)) {
+      this._likeButton.classList.add("element__like_active");
+    }
+    this._setEventListeners();
+    return this._cardElement;
   }
 
-  isLiked() {
-    const isUserHasLikes = this._likes.find(user => user._id === this._userId);
-    return isUserHasLikes;
+  _setEventListeners() {
+    this._likeButton.addEventListener("click", () => {
+      this._likeClickCard();
+    });
+
+    this._cardElement
+      .querySelector(".element__delete")
+      .addEventListener("click", () => {
+        this._handleDeleteCardClick();
+      });
+
+      this._cardImage
+      .addEventListener("click", () => {
+        this._handleCardClick({
+          name: this._name,
+          src: this._link,
+        });
+      });
   }
 
-  setLikes(newLikes) {
-    this._likes = newLikes;
-    this._likeCountElement.textContent = this._likes.length;
-    if(this.isLiked()) {
-        this._addLike()
+  handleLikeCard() {
+    if (!this._likeButton.classList.contains("element__like_active")) {
+      this._api
+        .addLike(this._id)
+        .then((data) => {
+          this._likeButton.classList.add("element__like_active");
+          this._likeCount.textContent = data.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-        this._removeLike()
+      this._api
+        .deleteLike(this._id)
+        .then((data) => {
+          this._likeButton.classList.remove("element__like_active");
+          this._likeCount.textContent = data.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
-  createCard = () => {
-    this._cardElement = this._template.cloneNode(true);
-
-    this._deleteButton = this._cardElement.querySelector('.element__delete');
-    this._likeButton = this._cardElement.querySelector('.element__like');
-    this._cardImage = this._cardElement.querySelector('.element__photo');
-
-    if(this._ownerId !== this._userId) {
-      this._deleteButton.style.display = 'none'
+  _handleDeleteCard() {
+    this._cardElement.closest(".element").remove();
   }
-
-    //Проставляем лайки
-    this.setLikes(this._likes);
-
-    //Заполняем данные карточки
-    this._fillCard()
-
-    this._setEventListeners()
-
-    return this._cardElement;
-  };
 }
+
 
 

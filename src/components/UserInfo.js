@@ -14,11 +14,11 @@ export default class UserInfo {
   }
   setUserInfo(profile) {
     this._name.textContent = profile.name;
-    this._info.textContent = profile.profession;
+    this._info.textContent = profile.about;
+    this.setAvatar(profile)
   }
-  setAvatar(avatar) {
-    this._avatar.src = avatar;
+
+  setAvatar(profile) {
+    this._avatar.src = profile.avatar;
  }
 }
-
-
