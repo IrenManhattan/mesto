@@ -43,7 +43,18 @@ let userId;
 export const cardTemplateSelector = '.card-template';
 
 //Попап подтверждения удаления
-const popupConfirmation = new PopupWithConfirmation(popupEditConfirm);
+const popupConfirmation = new PopupWithConfirmation(popupEditConfirm, () => {
+  api.deleteCard(id)
+  .then(() => {
+    card._handleDeleteCard();
+    popupConfirmation.close();
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+});
+
+popupConfirmation.setEventListeners();
 
 //Попап редактирования профиля
 const userInfo = new UserInfo({ nameElementSelector, infoElementSelector, avatarElementSelector });
@@ -102,19 +113,22 @@ const createCard = (data) => {
 
     likeClickCard: _ => card.handleLikeCard(),
 
-    handleDeleteCardClick: _ => {
-      popupConfirmation.setSubmitAction( _ => {
-        popupConfirmation.renderLoading(true)
+    handleDeleteCardClick: () => {
+      popupConfirmation.setConfirmHandler(() => {
+        popupConfirmation.renderLoading(true, 'Удаление...')
         api.deleteCard(data._id)
-          .then( _ => {
+          .then(() => {
             card._handleDeleteCard()
             popupConfirmation.close()
           })
           .catch((err) => console.log(err))
-          .finally( _ => popupConfirmation.renderLoading(false))
+          .finally(() => {
+            popupConfirmation.renderLoading(false);
       })
       popupConfirmation.open()
-    }
+    })
+    popupConfirmation.open(data);
+  }
   },
   cardTemplateSelector,
   api,
@@ -141,18 +155,20 @@ avatarEditButton.addEventListener('click', _ => {
   popupAvatarEdit.open()
 })
 
-const addCard = new PopupWithForm(addPopupCard, newValues => {
-  addCard.renderLoading(true)
-  api.addUserCard(newValues)
-    .then((data) => {
+const addCard = new PopupWithForm(addPopupCard, (data) => {
+  addCard.renderLoading(true, 'Сохранение...');
+  api.addUserCard(data)
+  .then((data) => {
       const card = createCard(data)
-      const cardElement = card.renderCard()
-      cardList.addItem(cardElement)
-      addCard.close()
+      const cardElement = card.renderCard();
+      cardList.addItem(cardElement);
     })
     .catch((err) => console.log(err))
-    .finally( _ => addCard.renderLoading(false))
-})
+    .finally(() => {
+      addCard.renderLoading(false)
+      addCard.close();
+    })
+});
 
 addCard.setEventListeners()
 
