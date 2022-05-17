@@ -87,7 +87,7 @@ export class Card {
     }
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._cardElement.closest(".element").remove();
   }
 

@@ -43,16 +43,7 @@ let userId;
 export const cardTemplateSelector = '.card-template';
 
 //Попап подтверждения удаления
-const popupConfirmation = new PopupWithConfirmation(popupEditConfirm, () => {
-  api.deleteCard(id)
-  .then(() => {
-    card._handleDeleteCard();
-    popupConfirmation.close();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-});
+const popupConfirmation = new PopupWithConfirmation(popupEditConfirm, () => {});
 
 popupConfirmation.setEventListeners();
 
@@ -69,12 +60,6 @@ const api = new Api({
       'Content-Type': 'application/json'
    }
 })
-
-//Запрос данных профиля с сервера
-const getUserInfo = api.getProfile()
-
-//Запрос данных карточек с сервера
-const getCards = api.getInitialCards()
 
 const cardList = new Section( {
   renderer: item => {
@@ -118,14 +103,13 @@ const createCard = (data) => {
         popupConfirmation.renderLoading(true, 'Удаление...')
         api.deleteCard(data._id)
           .then(() => {
-            card._handleDeleteCard()
+            card.handleDeleteCard()
             popupConfirmation.close()
           })
           .catch((err) => console.log(err))
           .finally(() => {
             popupConfirmation.renderLoading(false);
       })
-      popupConfirmation.open()
     })
     popupConfirmation.open(data);
   }
@@ -150,7 +134,6 @@ const popupAvatarEdit = new PopupWithForm(avatarPopup, newValues => {
 popupAvatarEdit.setEventListeners()
 
 avatarEditButton.addEventListener('click', _ => {
-  avatarFormValidator._disableSubmitButton()
   avatarFormValidator.resetValidation()
   popupAvatarEdit.open()
 })
@@ -162,11 +145,12 @@ const addCard = new PopupWithForm(addPopupCard, (data) => {
       const card = createCard(data)
       const cardElement = card.renderCard();
       cardList.addItem(cardElement);
+      addCard.close();
     })
     .catch((err) => console.log(err))
     .finally(() => {
       addCard.renderLoading(false)
-      addCard.close();
+
     })
 });
 
@@ -186,7 +170,6 @@ const newProfileForm = new PopupWithForm(profilePopup, newValues => {
 newProfileForm.setEventListeners()
 
 addCardButton.addEventListener('click', _ => {
-  cardEditFormValidator._disableSubmitButton()
   cardEditFormValidator.resetValidation();
   addCard.open()
 })
